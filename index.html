@@ -549,7 +549,6 @@ footer{background:var(--black);color:var(--white);padding:48px 0 24px}
     <a href="mailto:abhishek730017@gmail.com">Email</a>
   </div>
   <span style="font-size:13px;font-weight:700;letter-spacing:.06em">ABHISHEK JHA · RESEARCH SCIENTIST</span>
-  <button class="utility-sub" onclick="openModal('manage-modal')">+ Manage Blog</button>
 </div>
 
 <!-- ── HEADER ── -->
@@ -758,66 +757,6 @@ footer{background:var(--black);color:var(--white);padding:48px 0 24px}
   <div class="modal" style="max-width:800px">
     <button class="modal-close" onclick="closeModal('article-modal')">×</button>
     <div id="article-modal-content"></div>
-  </div>
-</div>
-
-<!-- ── MANAGE BLOG MODAL ── -->
-<div class="modal-overlay" id="manage-modal" onclick="closeOnBg(event,'manage-modal')">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('manage-modal')">×</button>
-    <h2>Manage Blog via GitHub</h2>
-    <p>Your blog runs entirely from <code style="display:inline;background:#f0f0f0;padding:2px 6px;font-size:13px">posts.json</code> in your GitHub repository. No backend needed — edit the file, commit, and GitHub Pages rebuilds automatically.</p>
-    <div class="tab-btns">
-      <button class="tab-btn active" onclick="switchTab('add-tab',this)">Add Article</button>
-      <button class="tab-btn" onclick="switchTab('delete-tab',this)">Delete Article</button>
-      <button class="tab-btn" onclick="switchTab('setup-tab',this)">Git Setup</button>
-    </div>
-
-    <!-- ADD TAB -->
-    <div id="add-tab" class="modal-section active">
-      <p><strong>Step 1.</strong> Open <code>posts.json</code> in your repo. Add a new object at the <em>top</em> of the array:</p>
-      <code>{
-  "id": "unique-slug-here",
-  "title": "Your Article Title",
-  "deck": "A one-sentence teaser for the article.",
-  "category": "ml",
-  "date": "2025-06-01",
-  "readTime": "7 min read",
-  "content": "Full article content here. Supports HTML.",
-  "featured": false
-}</code>
-      <p>Set <code style="display:inline;background:#f0f0f0;padding:2px 6px;font-size:13px">"featured": true</code> on one article to display it as the hero.</p>
-      <p><strong>Step 2.</strong> Commit and push:</p>
-      <code>git add posts.json
-git commit -m "Add: Your Article Title"
-git push origin main</code>
-      <p>GitHub Pages deploys in ~30 seconds. Your article is live.</p>
-      <p>Valid category values: <code style="display:inline;background:#f0f0f0;padding:2px 6px;font-size:13px">ml · physiology · intelligence · life · travel · skills · projects</code></p>
-    </div>
-
-    <!-- DELETE TAB -->
-    <div id="delete-tab" class="modal-section">
-      <p>Open <code>posts.json</code> and remove the object with the matching <code style="display:inline;background:#f0f0f0;padding:2px 6px;font-size:13px">id</code>. Then commit:</p>
-      <code>git add posts.json
-git commit -m "Remove: article-slug-here"
-git push origin main</code>
-      <p>To find an article's id, open the article and check the browser console, or search <code>posts.json</code> for its title.</p>
-      <p style="color:#c00;font-size:13px">⚠ Deletions are permanent. Consider setting <code style="display:inline;background:#ffeaea;padding:2px 6px;font-size:12px">"published": false</code> to hide without deleting.</p>
-    </div>
-
-    <!-- SETUP TAB -->
-    <div id="setup-tab" class="modal-section">
-      <div class="step"><span class="step-num">1</span><span>Create a GitHub repo named <code style="display:inline;background:#f0f0f0;padding:2px 6px">yourusername.github.io</code> and push this <code>index.html</code> to the <code>main</code> branch.</span></div>
-      <div class="step"><span class="step-num">2</span><span>Create a <code>posts.json</code> file in the root of the repo with your articles array (see Add tab for schema).</span></div>
-      <div class="step"><span class="step-num">3</span><span>Go to repo Settings → Pages → Source: <em>Deploy from branch</em> → Branch: <em>main</em> → Save.</span></div>
-      <div class="step"><span class="step-num">4</span><span>Your site is live at <code style="display:inline;background:#f0f0f0;padding:2px 6px">https://yourusername.github.io</code>. Every <code>git push</code> redeploys automatically.</span></div>
-      <code>git clone https://github.com/yourusername/yourusername.github.io
-# Edit posts.json
-git add posts.json
-git commit -m "Update blog"
-git push origin main</code>
-      <p style="font-size:13px;color:var(--gray-light)">Tip: use the GitHub web editor (pencil icon on posts.json) to edit from any device without cloning.</p>
-    </div>
   </div>
 </div>
 
