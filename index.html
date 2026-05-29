@@ -1,1131 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Abhishek Jha — Research Scientist</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet"/>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --black:#000;
-  --white:#fff;
-  --offwhite:#f8f7f4;
-  --yellow:#FFCC00;
-  --yellow-dark:#e6b800;
-  --gray-dark:#1a1a1a;
-  --gray-mid:#444;
-  --gray-light:#888;
-  --gray-rule:#d0cdc8;
-  --serif:'Libre Baskerville',Georgia,serif;
-  --sans:'Source Sans 3','Helvetica Neue',Arial,sans-serif;
-  --border-thin:1px solid var(--gray-rule);
-}
-html{scroll-behavior:smooth}
-body{background:var(--white);color:var(--gray-dark);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-img{display:block;width:100%;height:100%;object-fit:cover}
-
-/* ── TOP UTILITY BAR ── */
-.utility-bar{
-  background:var(--black);color:var(--white);
-  font-family:var(--sans);font-size:11px;font-weight:600;
-  letter-spacing:.12em;text-transform:uppercase;
-  height:36px;display:flex;align-items:center;justify-content:space-between;
-  padding:0 24px;
-}
-.utility-bar a{color:var(--white);opacity:.8;transition:opacity .2s}
-.utility-bar a:hover{opacity:1}
-.utility-links{display:flex;align-items:center;gap:20px}
-.utility-sub{
-  background:var(--yellow);color:var(--black);
-  padding:6px 16px;font-size:11px;font-weight:700;
-  letter-spacing:.1em;cursor:pointer;
-  transition:background .2s;
-  border:none;
-}
-.utility-sub:hover{background:var(--yellow-dark)}
-
-/* ── MAIN HEADER / NAV ── */
-header{
-  background:var(--white);
-  border-bottom:3px solid var(--black);
-  position:sticky;top:0;z-index:200;
-}
-.header-logo-row{
-  display:flex;align-items:center;justify-content:center;
-  padding:16px 24px 12px;
-  border-bottom:var(--border-thin);
-  position:relative;
-}
-.logo-wordmark{
-  font-family:var(--serif);
-  font-size:clamp(20px,3vw,30px);
-  font-weight:700;letter-spacing:-.01em;
-  color:var(--black);
-  text-transform:uppercase;letter-spacing:.08em;
-}
-.logo-wordmark span{color:var(--yellow-dark)}
-.header-actions{
-  position:absolute;right:24px;top:50%;transform:translateY(-50%);
-  display:flex;align-items:center;gap:12px;
-}
-.search-btn{
-  background:none;border:none;cursor:pointer;
-  padding:6px;display:flex;align-items:center;
-  color:var(--gray-mid);transition:color .2s;
-}
-.search-btn:hover{color:var(--black)}
-.search-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2}
-
-/* ── NAV TABS ── */
-.nav-tabs{
-  display:flex;align-items:center;justify-content:center;
-  gap:0;overflow-x:auto;scrollbar-width:none;
-  padding:0 24px;
-}
-.nav-tabs::-webkit-scrollbar{display:none}
-.nav-tab{
-  font-family:var(--sans);font-size:12px;font-weight:700;
-  letter-spacing:.1em;text-transform:uppercase;
-  color:var(--gray-mid);padding:12px 18px;
-  border-bottom:3px solid transparent;
-  transition:color .2s,border-color .2s;
-  white-space:nowrap;cursor:pointer;
-  background:none;border-top:none;border-left:none;border-right:none;
-}
-.nav-tab:hover,.nav-tab.active{color:var(--black);border-bottom-color:var(--yellow)}
-
-/* ── BREAKING TICKER ── */
-.ticker{
-  background:var(--yellow);
-  padding:0;overflow:hidden;
-  border-bottom:var(--border-thin);
-}
-.ticker-inner{display:flex;align-items:center;height:38px}
-.ticker-label{
-  flex-shrink:0;background:var(--black);color:var(--white);
-  font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
-  padding:0 16px;height:100%;display:flex;align-items:center;gap:8px;
-}
-.ticker-label span{width:6px;height:6px;background:var(--yellow);border-radius:50%;animation:blink 1.4s step-end infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-.ticker-track{flex:1;overflow:hidden}
-.ticker-items{
-  display:flex;gap:56px;white-space:nowrap;
-  animation:tickerScroll 35s linear infinite;
-}
-.ticker-items span{
-  font-size:12px;font-weight:700;color:var(--black);letter-spacing:.04em;
-  text-transform:uppercase;
-}
-.ticker-items span em{font-style:normal;opacity:.5;margin-right:8px}
-@keyframes tickerScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* ── HERO (NatGeo Full-bleed Feature) ── */
-.hero{
-  position:relative;overflow:hidden;
-  height:min(85vh,700px);
-  background:var(--black);
-  cursor:pointer;
-}
-.hero:hover .hero-img{transform:scale(1.03)}
-.hero-img{
-  position:absolute;inset:0;
-  background:linear-gradient(135deg,#0a1628 0%,#1a2c4e 30%,#0d3b2e 65%,#1a0f08 100%);
-  transition:transform 6s ease;
-}
-/* Animated research visualization overlay */
-.hero-canvas{position:absolute;inset:0;opacity:.35}
-.hero-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to right, rgba(0,0,0,.8) 0%, rgba(0,0,0,.5) 50%, rgba(0,0,0,.1) 100%);
-}
-.hero-content{
-  position:absolute;bottom:0;left:0;right:0;
-  padding:48px 56px;
-  max-width:700px;
-}
-.hero-category{
-  display:inline-block;
-  background:var(--yellow);color:var(--black);
-  font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  padding:4px 12px;margin-bottom:16px;
-}
-.hero-title{
-  font-family:var(--serif);font-size:clamp(28px,4.5vw,54px);
-  font-weight:700;line-height:1.1;color:var(--white);
-  margin-bottom:16px;letter-spacing:-.01em;
-}
-.hero-deck{
-  font-size:16px;color:rgba(255,255,255,.85);
-  line-height:1.6;margin-bottom:24px;max-width:500px;
-}
-.hero-byline{
-  font-size:12px;font-weight:700;color:rgba(255,255,255,.6);
-  letter-spacing:.1em;text-transform:uppercase;
-}
-.hero-byline strong{color:var(--yellow)}
-
-/* ── SECTION WRAPPER ── */
-.container{max-width:1200px;margin:0 auto;padding:0 24px}
-.section{padding:48px 0}
-
-/* ── SECTION HEADER ── */
-.section-head{
-  display:flex;align-items:center;justify-content:space-between;
-  border-top:3px solid var(--black);
-  padding-top:10px;margin-bottom:28px;
-}
-.section-head h2{
-  font-family:var(--sans);font-size:13px;font-weight:700;
-  letter-spacing:.14em;text-transform:uppercase;
-  color:var(--black);
-}
-.section-head a{
-  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--gray-light);border-bottom:1px solid var(--gray-light);
-  transition:color .2s,border-color .2s;
-}
-.section-head a:hover{color:var(--black);border-color:var(--black)}
-
-/* ── PRIMARY GRID (NatGeo main layout) ── */
-.primary-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  grid-template-rows:auto auto;
-  gap:1px;
-  background:var(--gray-rule);
-  border:1px solid var(--gray-rule);
-}
-.grid-cell{background:var(--white);padding:20px}
-.grid-cell.span-col-2{grid-column:span 2}
-.grid-cell.span-row-2{grid-row:span 2}
-.grid-cell.no-pad{padding:0}
-
-/* ── ARTICLE CARD (list style) ── */
-.article-card{display:flex;flex-direction:column;height:100%}
-.article-card .art-img{
-  aspect-ratio:16/9;overflow:hidden;margin-bottom:14px;flex-shrink:0;
-  background:var(--offwhite);
-}
-.article-card .art-img img{transition:transform .4s ease}
-.article-card:hover .art-img img{transform:scale(1.05)}
-.art-category{
-  font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--gray-light);margin-bottom:8px;display:block;
-}
-.art-category.cat-ml{color:#d44000}
-.art-category.cat-physio{color:#0066cc}
-.art-category.cat-intel{color:#007744}
-.art-category.cat-life{color:#8800cc}
-.art-category.cat-travel{color:#cc5500}
-.art-category.cat-skills{color:#445566}
-.art-category.cat-projects{color:#cc3366}
-
-.art-title{
-  font-family:var(--serif);font-size:17px;font-weight:700;
-  line-height:1.3;color:var(--black);margin-bottom:8px;
-  transition:color .2s;
-}
-.article-card:hover .art-title{color:var(--gray-mid)}
-.art-title.large{font-size:clamp(20px,2.5vw,28px)}
-.art-deck{
-  font-size:14px;color:var(--gray-mid);line-height:1.55;
-  flex:1;margin-bottom:12px;
-}
-.art-meta{
-  font-size:11px;color:var(--gray-light);
-  font-weight:600;letter-spacing:.06em;text-transform:uppercase;
-  margin-top:auto;padding-top:12px;border-top:var(--border-thin);
-}
-.art-readmore{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--black);margin-top:12px;
-  border-bottom:2px solid var(--yellow);padding-bottom:2px;
-  transition:border-color .2s;
-}
-.art-readmore:hover{border-color:var(--black)}
-
-/* ── HORIZONTAL ARTICLE (list style) ── */
-.article-horiz{
-  display:flex;gap:16px;padding:16px 0;border-bottom:var(--border-thin);
-  cursor:pointer;
-}
-.article-horiz:first-child{border-top:var(--border-thin)}
-.article-horiz:hover .hk-title{text-decoration:underline}
-.hk-img{width:90px;height:68px;flex-shrink:0;background:var(--offwhite);overflow:hidden}
-.hk-img img{transition:transform .3s}
-.article-horiz:hover .hk-img img{transform:scale(1.08)}
-.hk-body{flex:1}
-.hk-category{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-light);margin-bottom:4px}
-.hk-title{font-family:var(--serif);font-size:14px;font-weight:700;line-height:1.3;color:var(--black)}
-.hk-meta{font-size:11px;color:var(--gray-light);margin-top:4px}
-
-/* ── RESEARCH PROJECTS BAND ── */
-.projects-band{
-  background:var(--black);padding:48px 0;
-  border-top:4px solid var(--yellow);
-}
-.projects-band .section-head{border-top-color:rgba(255,255,255,.3)}
-.projects-band .section-head h2{color:var(--white)}
-.projects-band .section-head a{color:rgba(255,255,255,.5);border-color:rgba(255,255,255,.3)}
-.projects-band .section-head a:hover{color:var(--yellow);border-color:var(--yellow)}
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:rgba(255,255,255,.15)}
-.project-card{
-  background:var(--black);padding:28px 24px;
-  transition:background .2s;cursor:pointer;
-}
-.project-card:hover{background:#111}
-.proj-num{
-  font-size:40px;font-weight:700;color:rgba(255,255,255,.08);
-  font-family:var(--serif);line-height:1;margin-bottom:12px;
-}
-.proj-tag{
-  display:inline-block;
-  font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--yellow);border:1px solid rgba(255,204,0,.3);
-  padding:3px 10px;margin-bottom:14px;
-}
-.proj-title{
-  font-family:var(--serif);font-size:18px;font-weight:700;
-  color:var(--white);line-height:1.3;margin-bottom:10px;
-}
-.proj-desc{font-size:13px;color:rgba(255,255,255,.6);line-height:1.55}
-.proj-link{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--yellow);margin-top:16px;
-  border-bottom:1px solid rgba(255,204,0,.4);padding-bottom:2px;
-}
-
-/* ── SKILLS SECTION ── */
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px}
-.skill-card{
-  border:var(--border-thin);padding:20px;
-  transition:border-color .25s,box-shadow .25s;cursor:pointer;
-}
-.skill-card:hover{border-color:var(--black);box-shadow:4px 4px 0 var(--yellow)}
-.skill-icon{
-  width:40px;height:40px;background:var(--offwhite);
-  display:flex;align-items:center;justify-content:center;
-  font-size:22px;margin-bottom:12px;
-}
-.skill-name{font-family:var(--serif);font-size:16px;font-weight:700;margin-bottom:6px}
-.skill-level{
-  height:3px;background:var(--gray-rule);margin-bottom:8px;
-  position:relative;overflow:hidden;
-}
-.skill-level-fill{
-  position:absolute;left:0;top:0;height:100%;
-  background:var(--yellow);
-  transition:width 1s ease;
-}
-.skill-desc{font-size:12px;color:var(--gray-light);line-height:1.5}
-
-/* ── ABOUT / AUTHOR STRIP ── */
-.author-strip{
-  border-top:3px solid var(--black);
-  border-bottom:3px solid var(--black);
-  padding:40px 0;
-  display:flex;align-items:center;gap:40px;
-}
-.author-photo{
-  width:80px;height:80px;border-radius:50%;flex-shrink:0;
-  background:var(--black);display:flex;align-items:center;justify-content:center;
-  font-family:var(--serif);font-size:28px;font-weight:700;color:var(--yellow);
-}
-.author-name{font-family:var(--serif);font-size:24px;font-weight:700;margin-bottom:4px}
-.author-role{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-light);margin-bottom:12px}
-.author-bio{font-size:15px;color:var(--gray-mid);line-height:1.6;max-width:600px}
-.author-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-.author-link{
-  display:inline-flex;align-items:center;gap:7px;
-  font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--gray-dark);border:2px solid var(--gray-dark);padding:7px 14px;
-  transition:all .2s;
-}
-.author-link:hover{background:var(--black);color:var(--yellow)}
-.author-link svg{width:14px;height:14px;fill:currentColor}
-
-/* ── PHOTO OF THE DAY ── */
-.potd{
-  position:relative;overflow:hidden;
-  height:min(60vh,500px);cursor:pointer;
-}
-.potd-img{
-  position:absolute;inset:0;
-  background:linear-gradient(160deg,#0f1f3d,#1a3a2e,#2d1a0f);
-  transition:transform 6s ease;
-}
-.potd:hover .potd-img{transform:scale(1.04)}
-.potd-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.2) 60%,transparent 100%);
-}
-.potd-label{
-  position:absolute;top:24px;left:24px;
-  background:var(--yellow);color:var(--black);
-  font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  padding:5px 14px;
-}
-.potd-content{
-  position:absolute;bottom:0;left:0;right:0;padding:32px 40px;
-}
-.potd-title{
-  font-family:var(--serif);font-size:clamp(22px,3.5vw,40px);
-  color:var(--white);font-weight:700;line-height:1.2;margin-bottom:10px;
-}
-.potd-caption{font-size:14px;color:rgba(255,255,255,.75);max-width:600px;line-height:1.5}
-
-/* ── NEWSLETTER ── */
-.newsletter{
-  background:var(--offwhite);border-top:3px solid var(--black);
-  padding:48px 0;
-}
-.nl-inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-.nl-eyebrow{
-  font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--gray-light);margin-bottom:8px;
-}
-.nl-title{font-family:var(--serif);font-size:32px;font-weight:700;line-height:1.15;margin-bottom:12px}
-.nl-body{font-size:15px;color:var(--gray-mid);line-height:1.6}
-.nl-form{display:flex;flex-direction:column;gap:12px}
-.nl-input{
-  border:2px solid var(--black);padding:14px 16px;
-  font-size:15px;font-family:var(--sans);
-  background:var(--white);outline:none;
-  transition:border-color .2s;
-}
-.nl-input:focus{border-color:var(--yellow-dark)}
-.nl-btn{
-  background:var(--black);color:var(--white);
-  border:none;padding:14px 28px;
-  font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  font-family:var(--sans);cursor:pointer;
-  transition:background .2s,color .2s;
-  align-self:flex-start;
-}
-.nl-btn:hover{background:var(--yellow);color:var(--black)}
-.nl-note{font-size:12px;color:var(--gray-light)}
-
-/* ── FOOTER ── */
-footer{background:var(--black);color:var(--white);padding:48px 0 24px}
-.footer-top{
-  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;
-  padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.15);
-  margin-bottom:24px;
-}
-.footer-brand{
-  font-family:var(--serif);font-size:20px;font-weight:700;
-  letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px;
-}
-.footer-brand span{color:var(--yellow)}
-.footer-bio{font-size:13px;color:rgba(255,255,255,.5);line-height:1.6}
-.footer-col-title{
-  font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
-  color:rgba(255,255,255,.4);margin-bottom:16px;
-}
-.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
-.footer-col li a{font-size:13px;color:rgba(255,255,255,.7);transition:color .2s}
-.footer-col li a:hover{color:var(--yellow)}
-.footer-bottom{
-  display:flex;justify-content:space-between;align-items:center;
-  font-size:11px;color:rgba(255,255,255,.35);
-  letter-spacing:.08em;
-}
-
-/* ── MODAL ── */
-.modal-overlay{
-  display:none;position:fixed;inset:0;
-  background:rgba(0,0,0,.8);z-index:1000;
-  align-items:center;justify-content:center;
-  padding:24px;
-}
-.modal-overlay.open{display:flex}
-.modal{
-  background:var(--white);max-width:680px;width:100%;
-  max-height:90vh;overflow-y:auto;
-  padding:40px;position:relative;
-}
-.modal-close{
-  position:absolute;top:16px;right:16px;
-  background:none;border:none;cursor:pointer;
-  font-size:24px;color:var(--gray-mid);
-  transition:color .2s;
-  line-height:1;
-}
-.modal-close:hover{color:var(--black)}
-.modal h2{
-  font-family:var(--serif);font-size:24px;font-weight:700;
-  margin-bottom:20px;padding-bottom:16px;border-bottom:3px solid var(--black);
-}
-.modal p{font-size:14px;color:var(--gray-mid);line-height:1.65;margin-bottom:16px}
-.modal code{
-  display:block;background:var(--gray-dark);color:#a8ff78;
-  font-size:12px;padding:16px;margin:12px 0;
-  white-space:pre-wrap;word-break:break-all;
-  font-family:'Courier New',monospace;line-height:1.6;
-  border-left:4px solid var(--yellow);
-}
-.modal .tab-btns{display:flex;gap:4px;margin-bottom:20px}
-.modal .tab-btn{
-  padding:8px 16px;border:2px solid var(--gray-rule);background:none;
-  font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  cursor:pointer;transition:all .2s;
-}
-.modal .tab-btn.active{background:var(--black);color:var(--white);border-color:var(--black)}
-.modal-section{display:none}
-.modal-section.active{display:block}
-.step-num{
-  display:inline-flex;align-items:center;justify-content:center;
-  width:24px;height:24px;background:var(--yellow);
-  font-size:12px;font-weight:700;margin-right:8px;flex-shrink:0;
-}
-.step{display:flex;align-items:flex-start;gap:0;margin-bottom:12px;font-size:14px;line-height:1.6}
-
-/* ── SEARCH OVERLAY ── */
-.search-overlay{
-  display:none;position:fixed;inset:0;
-  background:rgba(255,255,255,.98);z-index:1000;
-  padding:80px 24px 24px;
-}
-.search-overlay.open{display:block}
-.search-overlay .close{
-  position:fixed;top:16px;right:24px;
-  background:none;border:none;cursor:pointer;
-  font-size:30px;color:var(--gray-mid);
-}
-.search-input-wrap{max-width:700px;margin:0 auto;display:flex;gap:0}
-.search-input-wrap input{
-  flex:1;border:none;border-bottom:3px solid var(--black);
-  font-family:var(--serif);font-size:clamp(24px,4vw,40px);
-  padding:8px 0;outline:none;
-}
-.search-input-wrap button{
-  background:var(--black);color:var(--white);border:none;
-  padding:0 24px;cursor:pointer;font-size:18px;
-}
-#search-results{max-width:700px;margin:32px auto 0}
-.search-result-item{
-  padding:16px 0;border-bottom:var(--border-thin);cursor:pointer;
-}
-.search-result-item:hover .sr-title{text-decoration:underline}
-.sr-cat{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-light);margin-bottom:4px}
-.sr-title{font-family:var(--serif);font-size:18px;font-weight:700;line-height:1.3}
-.sr-desc{font-size:13px;color:var(--gray-mid);margin-top:4px}
-
-/* ── RESPONSIVE ── */
-@media(max-width:900px){
-  .primary-grid{grid-template-columns:1fr 1fr}
-  .grid-cell.span-col-2{grid-column:span 1}
-  .footer-top{grid-template-columns:1fr 1fr}
-  .nl-inner{grid-template-columns:1fr}
-}
-@media(max-width:640px){
-  .primary-grid{grid-template-columns:1fr}
-  .hero-content{padding:24px}
-  .author-strip{flex-direction:column;align-items:flex-start;gap:20px}
-  .utility-links{display:none}
-  .nav-tab{padding:10px 12px;font-size:11px}
-  .footer-top{grid-template-columns:1fr}
-}
-
-/* ── ANIMATIONS ── */
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
-.reveal.up{opacity:1;transform:translateY(0)}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abhishek Jha — Kanto Research Lab</title>
+  <link rel="stylesheet" href="index.css">
+  <!-- Favicon would be a pokeball -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22white%22 stroke=%22black%22 stroke-width=%2210%22/><path d=%22M5 50h90%22 stroke=%22black%22 stroke-width=%2210%22/><path d=%22M5 50a45 45 0 0 1 90 0z%22 fill=%22%23D44000%22/><circle cx=%2250%22 cy=%2250%22 r=%2215%22 fill=%22white%22 stroke=%22black%22 stroke-width=%2210%22/></svg>">
 </head>
 <body>
 
-<!-- ── UTILITY BAR ── -->
-<div class="utility-bar">
-  <div class="utility-links">
-    <a href="https://github.com/abhishekjha" target="_blank">GitHub</a>
-    <a href="https://scholar.google.com" target="_blank">Google Scholar</a>
-    <a href="mailto:abhishek730017@gmail.com">Email</a>
-  </div>
-  <span style="font-size:13px;font-weight:700;letter-spacing:.06em">ABHISHEK JHA · RESEARCH SCIENTIST</span>
-</div>
+<div class="outer-container">
+  <!-- ── HEADER ── -->
+  <header class="main-header">
+    <div class="header-left">
+      <img src="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22white%22 stroke=%22black%22 stroke-width=%228%22/><path d=%22M5 50h90%22 stroke=%22black%22 stroke-width=%228%22/><path d=%22M5 50a45 45 0 0 1 90 0z%22 fill=%22%23D44000%22/><circle cx=%2250%22 cy=%2250%22 r=%2215%22 fill=%22white%22 stroke=%22black%22 stroke-width=%228%22/></svg>" class="pokeball-icon" alt="Pokeball">
+      <div class="logo">Kanto Lab Blog</div>
+    </div>
+    <nav class="main-nav">
+      <a href="#" class="main-nav-link active">Home</a>
+      <a href="#latest" class="main-nav-link">Journal</a>
+      <a href="#projects" class="main-nav-link">Projects</a>
+      <a href="mailto:abhishek730017@gmail.com" class="main-nav-link">Contact</a>
+    </nav>
+    <button class="lets-go-btn">Let's GO! ➔</button>
+  </header>
 
-<!-- ── HEADER ── -->
-<header>
-  <div class="header-logo-row">
-    <div class="logo-wordmark">Abhishek <span>Jha</span></div>
-    <div class="header-actions">
-      <button class="search-btn" onclick="openSearch()" aria-label="Search">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/></svg>
-      </button>
+  <!-- ── TICKER ── -->
+  <div class="ticker-wrap">
+    <div class="ticker-label">NEWS</div>
+    <div class="ticker-content" id="ticker-text">
+       Latest discovery: Transformer self-attention matches hippocampal patterns... &nbsp; • &nbsp; New entry: Sleep as Synaptic Sculpting... &nbsp; • &nbsp; Researcher Abhishek spotted in Ladakh...
     </div>
   </div>
-  <nav class="nav-tabs">
-    <button class="nav-tab active" onclick="filterSection('all',this)">All</button>
-    <button class="nav-tab" onclick="filterSection('ml',this)">Machine Learning</button>
-    <button class="nav-tab" onclick="filterSection('physiology',this)">Physiology</button>
-    <button class="nav-tab" onclick="filterSection('intelligence',this)">Intelligence</button>
-    <button class="nav-tab" onclick="filterSection('life',this)">Life</button>
-    <button class="nav-tab" onclick="filterSection('travel',this)">Travel</button>
-    <button class="nav-tab" onclick="filterSection('skills',this)">Skills</button>
-    <button class="nav-tab" onclick="filterSection('projects',this)">Projects</button>
-  </nav>
-</header>
 
-<!-- ── TICKER ── -->
-<div class="ticker" id="ticker-strip">
-  <div class="ticker-inner">
-    <div class="ticker-label"><span></span>Latest</div>
-    <div class="ticker-track">
-      <div class="ticker-items" id="ticker-content">
-        <!-- populated by JS -->
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ── HERO ── -->
-<section class="hero reveal" id="hero-section" onclick="openArticle(0)">
-  <div class="hero-img" id="hero-bg"></div>
-  <canvas class="hero-canvas" id="hero-canvas"></canvas>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <span class="hero-category" id="hero-cat">Machine Learning</span>
-    <h1 class="hero-title" id="hero-title">Loading featured article…</h1>
-    <p class="hero-deck" id="hero-deck"></p>
-    <div class="hero-byline">By <strong>Abhishek Jha</strong> &nbsp;·&nbsp; <span id="hero-meta"></span></div>
-  </div>
-</section>
-
-<!-- ── MAIN FEED ── -->
-<div class="container">
-  <section class="section reveal">
-    <div class="section-head">
-      <h2 id="feed-label">Latest Stories</h2>
-      <a href="#all-posts">See All →</a>
-    </div>
-    <div class="primary-grid" id="primary-grid">
-      <!-- populated by JS -->
-    </div>
-  </section>
-</div>
-
-<!-- ── PROJECTS BAND ── -->
-<section class="projects-band" id="projects-band">
   <div class="container">
-    <div class="section-head">
-      <h2>Research Projects</h2>
-      <a href="#">View All Projects →</a>
-    </div>
-    <div class="projects-grid" id="projects-grid">
-      <!-- populated by JS -->
-    </div>
-  </div>
-</section>
+    <!-- ── HERO ── -->
+    <section class="hero">
+      <div class="hero-img-container">
+        <img src="assets/lab_header.png" alt="Research Lab" class="hero-img">
+      </div>
+      <div class="hero-content">
+        <h1>Abhishek's Kanto Research Lab</h1>
+        <p>Decoding the mysteries of Machine Learning and Biological Intelligence through the lens of nostalgia.</p>
+        <a href="#latest" class="btn-pixel">Open Journal ➔</a>
+      </div>
+    </section>
 
-<!-- ── SKILLS ── -->
-<div class="container" id="skills-section">
-  <section class="section reveal">
-    <div class="section-head">
-      <h2>Skills & Expertise</h2>
-    </div>
-    <div class="skills-grid" id="skills-grid">
-      <!-- populated by JS -->
-    </div>
-  </section>
+    <!-- ── ENCOUNTER (POTD) ── -->
+    <section class="potd-section">
+      <div class="potd-img-wrap">
+        <img src="https://picsum.photos/seed/research/240/160" alt="Discovery" style="width:100%; height:100%; object-fit:cover; image-rendering:pixelated;">
+      </div>
+      <div class="potd-content">
+        <h2>A Wild Discovery Appeared!</h2>
+        <p>Researchers have identified striking parallels between neural attention maps and the spatial indexing of the mammalian brain.</p>
+        <a href="#" class="btn-pixel" style="font-size:12px; margin-top:10px; padding:8px 16px;">Analyze ➔</a>
+      </div>
+    </section>
+
+    <!-- ── LATEST POSTS ── -->
+    <main>
+      <div class="section-title-bar" id="latest">
+        <img src="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22white%22 stroke=%22black%22 stroke-width=%228%22/><path d=%22M5 50h90%22 stroke=%22black%22 stroke-width=%228%22/><path d=%22M5 50a45 45 0 0 1 90 0z%22 fill=%22%23D44000%22/><circle cx=%2250%22 cy=%2250%22 r=%2215%22 fill=%22white%22 stroke=%22black%22 stroke-width=%228%22/></svg>" width="20" height="20">
+        Lab Journal entries
+      </div>
+      <div class="posts-list" id="posts-container">
+        <p style="padding: 20px; font-family: var(--font-pixel);">Scanning data...</p>
+      </div>
+
+      <!-- ── GYM LEADERS (Projects) ── -->
+      <div class="section-title-bar" id="projects" style="margin-top:40px;">
+        <img src="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22white%22 stroke=%22black%22 stroke-width=%228%22/><path d=%22M5 50h90%22 stroke=%22black%22 stroke-width=%228%22/><path d=%22M5 50a45 45 0 0 1 90 0z%22 fill=%22%23D44000%22/><circle cx=%2250%22 cy=%2250%22 r=%2215%22 fill=%22white%22 stroke=%22black%22 stroke-width=%228%22/></svg>" width="20" height="20">
+        Research Milestones
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <span class="badge-icon">💠</span>
+          <h3 class="project-title">Transformer Brain</h3>
+          <span class="project-tag">Neural Circuits</span>
+        </div>
+        <div class="project-card">
+          <span class="badge-icon">🌿</span>
+          <h3 class="project-title">Synaptic Sculpt</h3>
+          <span class="project-tag">Physiology</span>
+        </div>
+        <div class="project-card">
+          <span class="badge-icon">🐙</span>
+          <h3 class="project-title">Octo-Mind</h3>
+          <span class="project-tag">Intelligence</span>
+        </div>
+        <div class="project-card">
+          <span class="badge-icon">🏔️</span>
+          <h3 class="project-title">Ladakh Field</h3>
+          <span class="project-tag">Travel</span>
+        </div>
+      </div>
+
+      <!-- ── NEWSLETTER (Lab Network) ── -->
+      <div class="newsletter-box">
+        <h2 style="font-family: var(--font-pixel); margin-bottom:10px;">Join the Lab Network!</h2>
+        <p style="font-size:14px; margin-bottom:15px;">Receive direct transmissions of new research findings.</p>
+        <input type="email" class="nl-input" placeholder="Your Email Address">
+        <button class="btn-pixel" style="padding:10px 20px; font-size:14px;">Connect ➔</button>
+      </div>
+    </main>
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar">
+      <div class="sidebar-box">
+        <div class="sidebar-box-header">Trainer Info</div>
+        <div class="sidebar-box-content">
+          <div class="about-me">
+            <img src="assets/scientist_sprite.png" class="about-sprite" alt="Abhishek">
+            <div class="about-text">
+              <strong>Abhishek Jha</strong><br>
+              Research Scientist. Studying the ghost in the machine.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills (Stats) -->
+      <div class="sidebar-box">
+        <div class="sidebar-box-header">Researcher Stats</div>
+        <div class="sidebar-box-content">
+          <div class="stats-container">
+            <div class="stat-row">
+              <div class="stat-label">PYT</div>
+              <div class="stat-bar-outer"><div class="stat-bar-inner" style="width: 85%;"></div></div>
+              <div class="stat-value">85</div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-label">ML</div>
+              <div class="stat-bar-outer"><div class="stat-bar-inner" style="width: 90%; background-color: #D44000;"></div></div>
+              <div class="stat-value">90</div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-label">MATH</div>
+              <div class="stat-bar-outer"><div class="stat-bar-inner" style="width: 75%; background-color: #2D89EF;"></div></div>
+              <div class="stat-value">75</div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-label">WRI</div>
+              <div class="stat-bar-outer"><div class="stat-bar-inner" style="width: 80%; background-color: #7E38B7;"></div></div>
+              <div class="stat-value">80</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="sidebar-box-header">Map</div>
+        <div class="sidebar-box-content">
+          <ul class="nav-list">
+            <li class="nav-item"><a href="#">🏠 Town Map (Home) <span>➔</span></a></li>
+            <li class="nav-item"><a href="#latest">📖 Lab Journal <span>➔</span></a></li>
+            <li class="nav-item"><a href="#projects">🔍 Milestones <span>➔</span></a></li>
+            <li class="nav-item"><a href="#">📞 PC Link <span>➔</span></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-box">
+        <div class="sidebar-box-header">Topics</div>
+        <div class="sidebar-box-content">
+          <div class="tag-grid">
+            <a href="#" class="tag-badge" style="background-color: var(--type-ml)">ML</a>
+            <a href="#" class="tag-badge" style="background-color: var(--type-physio)">Physiology</a>
+            <a href="#" class="tag-badge" style="background-color: var(--type-intel)">Intelligence</a>
+            <a href="#" class="tag-badge" style="background-color: var(--type-life)">Life</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="main-footer">
+    <div class="footer-decor">✿ ✿ ✿</div>
+    <div>© 2024 Abhishek Jha • Gotta research 'em all!</div>
+    <div style="opacity: 0.5;">Regional Lab: Jaipur, India</div>
+  </footer>
 </div>
 
-<!-- ── ALL POSTS ── -->
-<div class="container" id="all-posts">
-  <section class="section reveal">
-    <div class="section-head">
-      <h2 id="all-posts-label">All Writing</h2>
-    </div>
-    <div id="posts-list">
-      <!-- populated by JS -->
-    </div>
-  </section>
-</div>
-
-<!-- ── PHOTO OF THE DAY / FEATURED VIZ ── -->
-<section class="potd reveal" onclick="">
-  <div class="potd-img" id="potd-bg"></div>
-  <canvas id="potd-canvas" style="position:absolute;inset:0;opacity:.4"></canvas>
-  <div class="potd-overlay"></div>
-  <span class="potd-label">Research Highlight</span>
-  <div class="potd-content">
-    <h2 class="potd-title">Neural Representations in<br>Cognitive Processing</h2>
-    <p class="potd-caption">Exploring how the brain encodes and retrieves complex information structures — from episodic memory to abstract reasoning — through computational lenses.</p>
-  </div>
-</section>
-
-<!-- ── AUTHOR ── -->
-<div class="container">
-  <section class="author-strip reveal">
-    <div class="author-photo">AJ</div>
-    <div>
-      <div class="author-name">Abhishek Jha</div>
-      <div class="author-role">Research Scientist · Writer · Explorer</div>
-      <p class="author-bio">I work at the intersection of machine learning, cognitive science, and computational biology. I write about ideas that fascinate me — from gradient flows in neural networks to the physiology of sleep and the intelligence of slime moulds.</p>
-      <div class="author-links">
-        <a class="author-link" href="https://github.com/abhishekjha" target="_blank">
-          <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
-          GitHub
-        </a>
-        <a class="author-link" href="https://x.com" target="_blank">
-          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          Twitter / X
-        </a>
-        <a class="author-link" href="mailto:abhishek730017@gmail.com">
-          <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.7-8 5-8-5V6l8 5 8-5v2.7z"/></svg>
-          Email
-        </a>
-        <a class="author-link" href="https://scholar.google.com" target="_blank">
-          <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
-          Scholar
-        </a>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- ── NEWSLETTER ── -->
-<section class="newsletter reveal">
-  <div class="container">
-    <div class="nl-inner">
-      <div>
-        <div class="nl-eyebrow">Stay Informed</div>
-        <h2 class="nl-title">Research updates<br>in your inbox.</h2>
-        <p class="nl-body">New articles on ML, physiology, cognitive science and beyond — no noise, no spam, just ideas worth your time.</p>
-      </div>
-      <form class="nl-form" onsubmit="handleSub(event)">
-        <input class="nl-input" type="email" placeholder="your@email.com" required/>
-        <button class="nl-btn" type="submit" id="sub-btn">Subscribe</button>
-        <p class="nl-note">Unsubscribe any time. No tracking.</p>
-      </form>
+<!-- ── MODAL (Pokedex) ── -->
+<div class="modal-overlay" id="pokedex-modal">
+  <div class="modal-pokedex">
+    <button class="modal-close" onclick="closePokedex()">×</button>
+    <div class="pokedex-screen" id="pokedex-content">
+      <!-- Loaded dynamically -->
     </div>
   </div>
-</section>
-
-<!-- ── FOOTER ── -->
-<footer>
-  <div class="container">
-    <div class="footer-top">
-      <div>
-        <div class="footer-brand">Abhishek <span>Jha</span></div>
-        <p class="footer-bio">Research scientist writing about machine learning, physiology, intelligence, and the curious edges of science. Based in Jaipur, India.</p>
-      </div>
-      <div class="footer-col">
-        <div class="footer-col-title">Topics</div>
-        <ul>
-          <li><a href="#">Machine Learning</a></li>
-          <li><a href="#">Physiology</a></li>
-          <li><a href="#">Intelligence</a></li>
-          <li><a href="#">Life</a></li>
-          <li><a href="#">Travel</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <div class="footer-col-title">Work</div>
-        <ul>
-          <li><a href="#">Research Projects</a></li>
-          <li><a href="#">Skills</a></li>
-          <li><a href="#">Publications</a></li>
-          <li><a href="#">Talks</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <div class="footer-col-title">Connect</div>
-        <ul>
-          <li><a href="https://github.com/abhishekjha" target="_blank">GitHub</a></li>
-          <li><a href="https://x.com" target="_blank">Twitter / X</a></li>
-          <li><a href="https://scholar.google.com" target="_blank">Google Scholar</a></li>
-          <li><a href="mailto:abhishek730017@gmail.com">Email</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2025 Abhishek Jha · All rights reserved</span>
-      <span>Built with GitHub Pages · Deployed via Git</span>
-    </div>
-  </div>
-</footer>
-
-<!-- ── ARTICLE MODAL ── -->
-<div class="modal-overlay" id="article-modal" onclick="closeArticleOnBg(event)">
-  <div class="modal" style="max-width:800px">
-    <button class="modal-close" onclick="closeModal('article-modal')">×</button>
-    <div id="article-modal-content"></div>
-  </div>
-</div>
-
-<!-- ── SEARCH OVERLAY ── -->
-<div class="search-overlay" id="search-overlay">
-  <button class="close" onclick="closeSearch()">×</button>
-  <div class="search-input-wrap">
-    <input type="text" id="search-input" placeholder="Search articles…" oninput="doSearch(this.value)"/>
-    <button onclick="doSearch(document.getElementById('search-input').value)">→</button>
-  </div>
-  <div id="search-results"></div>
 </div>
 
 <script>
-// ────────────────────────────────────────────
-// DATA — loaded from posts.json (GitHub Pages)
-// Edit posts.json in your repo to add/remove articles.
-// Inline fallback used only if fetch fails (e.g. local file:// open).
-// ────────────────────────────────────────────
-const POSTS_FALLBACK = [
-  {
-    id:"transformer-attention-brain",
-    title:"How Transformer Attention Mirrors Neural Circuits in the Hippocampus",
-    deck:"Striking parallels between self-attention mechanisms and the place-cell geometry of memory consolidation suggest deep architectural convergence.",
-    category:"ml",
-    date:"May 24, 2025",
-    readTime:"9 min read",
-    featured:true,
-    content:"<p>The hippocampus has long been understood as the brain's indexing system — a fast-binding structure that ties together distributed cortical representations into coherent episodic memories. When I first read Vaswani et al.'s original Transformer paper, I couldn't shake the feeling that I'd seen this architecture somewhere before.</p><p>The key insight: both systems implement a form of content-addressable memory. In transformers, the attention score between a query Q and key K determines retrieval weight. In hippocampal circuitry, pattern completion in CA3 recurrent connections performs structurally identical operations — a query pattern activates the most similar stored pattern through a form of Hebbian overlap scoring.</p><p>This essay explores what this convergence might mean — for AI architecture design, for our models of memory consolidation, and for the broader question of whether intelligence is substrate-independent.</p>"
-  },
-  {
-    id:"sleep-synaptic-homeostasis",
-    title:"Sleep as Synaptic Pruning: The Homeostasis Hypothesis Revisited",
-    deck:"New evidence from calcium imaging during NREM sleep challenges our assumptions about what the sleeping brain is actually optimizing.",
-    category:"physiology",
-    date:"May 10, 2025",
-    readTime:"7 min read",
-    featured:false,
-    content:"<p>The synaptic homeostasis hypothesis (SHY) proposes that wakefulness leads to net synaptic potentiation, and sleep reverses this through downscaling. It's an elegant theory — and increasingly, a contested one.</p><p>Recent two-photon calcium imaging in mouse primary visual cortex shows that slow-wave activity during NREM sleep does not uniformly downscale synapses. Instead, it selectively strengthens synapses that were recently involved in learning while weakening others. This isn't homeostasis — it's sculpting.</p>"
-  },
-  {
-    id:"octopus-distributed-cognition",
-    title:"The Octopus as a Model for Distributed Cognition",
-    deck:"Two-thirds of an octopus's neurons live in its arms. What does that mean for how we define a mind?",
-    category:"intelligence",
-    date:"Apr 28, 2025",
-    readTime:"6 min read",
-    featured:false,
-    content:"<p>An octopus arm, severed from its body, will still reach for food. The arm 'decides' to grasp. This single fact should unsettle every assumption we hold about where cognition lives.</p><p>With ~500 million neurons distributed across eight semi-autonomous arms, the octopus challenges the centralized-brain model that vertebrate chauvinism has normalized. Each arm contains a ganglion capable of local sensorimotor integration — reflexive behavior, texture discrimination, even simple learning.</p>"
-  },
-  {
-    id:"rl-for-protein-design",
-    title:"Using Reinforcement Learning to Navigate Protein Fitness Landscapes",
-    deck:"Treating protein engineering as a Markov decision process opens surprising doors — and reveals why wet-lab feedback loops matter more than bigger models.",
-    category:"ml",
-    date:"Apr 12, 2025",
-    readTime:"11 min read",
-    featured:false,
-    content:"<p>Protein fitness landscapes are deceptive. High-fitness sequences tend to cluster in sparse, non-contiguous regions of sequence space, separated by fitness valleys. Evolutionary search — and most ML approaches — struggle here.</p><p>The RL framing offers something different: an agent that learns to navigate the landscape via active, adaptive sampling. State = current sequence. Action = point mutation. Reward = experimental fitness readout. The key challenge is that the environment (the wet lab) is slow, expensive, and stochastic.</p>"
-  },
-  {
-    id:"ladakh-mind-altitude",
-    title:"Thinking at 5,000 Metres: Cognitive Effects of High Altitude",
-    deck:"A field researcher's notebook from Ladakh — what hypoxia does to memory, attention, and the sense of self.",
-    category:"travel",
-    date:"Mar 31, 2025",
-    readTime:"5 min read",
-    featured:false,
-    content:"<p>The Pangong Tso sits at 4,350m. By the time I reached it, I'd been at altitude for six days — enough time for acclimatization to begin but not complete. My notebook entries from those days are... strange.</p><p>Hypoxia impairs prefrontal function first. Working memory degrades measurably above 3,500m, and cognitive flexibility — the ability to switch between tasks — suffers disproportionately. What remains intact longer: procedural memory, emotional salience, spatial navigation.</p>"
-  },
-  {
-    id:"deliberate-practice-research",
-    title:"Deliberate Practice for Research Scientists: What Anders Ericsson Got Right",
-    deck:"The 10,000-hour rule is a myth, but the underlying science of expertise acquisition has genuine implications for how you structure your learning.",
-    category:"skills",
-    date:"Mar 15, 2025",
-    readTime:"8 min read",
-    featured:false,
-    content:"<p>Ericsson never said 10,000 hours. What he showed is that expert performance requires deliberate practice — structured activity at the edge of your current ability, with immediate feedback and focused repetition of weak points. The hours myth is a journalistic artefact.</p><p>For research scientists, the implications are counterintuitive. Reading papers is not deliberate practice. Attending seminars is not deliberate practice. Writing first drafts, receiving brutal peer review, and immediately revising — that's closer.</p>"
-  },
-  {
-    id:"gut-brain-axis-mood",
-    title:"The Gut-Brain Axis: Psychobiotics and the Future of Mood Regulation",
-    deck:"The enteric nervous system contains 100 million neurons. New research suggests we've been treating depression from the wrong end.",
-    category:"physiology",
-    date:"Feb 28, 2025",
-    readTime:"8 min read",
-    featured:false,
-    content:"<p>The vagus nerve is a bidirectional highway between gut and brain. About 80% of its fibres carry signals upward — from gut to brain — making the enteric nervous system less a subordinate and more a collaborator in mood regulation.</p><p>The psychobiotic hypothesis proposes that targeted manipulation of gut microbiota can produce measurable anxiolytic and antidepressant effects. The evidence is promising but heterogeneous.</p>"
-  },
-  {
-    id:"spaced-repetition-system",
-    title:"Building a Personal Knowledge System with Spaced Repetition",
-    deck:"How I use Anki, Obsidian, and a custom tagging taxonomy to retain 90% of what I read across three research domains.",
-    category:"skills",
-    date:"Feb 10, 2025",
-    readTime:"6 min read",
-    featured:false,
-    content:"<p>The forgetting curve is brutal and democratic — it doesn't care how important the paper is. Without active retrieval practice, most of what you read disappears within a week. Spaced repetition is the only intervention with a solid evidence base for long-term retention.</p><p>My system has three layers: (1) Anki for factual and conceptual retrieval, (2) Obsidian for linked, elaborative notes, and (3) a weekly review ritual that forces synthesis across domains.</p>"
-  }
-];
-
-// Live data loaded from posts.json — populated below
-let POSTS = [];
-
-const PROJECTS = [
-  {num:"01",tag:"ML / Neuro",title:"Hippocampal Sequence Replay Simulation",desc:"Implementing theta-sequence generation in a biophysically-constrained place cell model to study memory consolidation during simulated sleep."},
-  {num:"02",tag:"Computational Biology",title:"Protein Fitness Landscape RL Agent",desc:"An off-policy RL agent that navigates protein sequence space, trained on a combination of DMS datasets and oracle predictions."},
-  {num:"03",tag:"Cognitive Science",title:"Attention & Working Memory Benchmarks",desc:"A reproducible test battery for comparing human vs. transformer attention patterns on naturalistic cognitive tasks."},
-  {num:"04",tag:"Open Source",title:"SynapScale — ML Experiment Tracker",desc:"A minimal, git-native experiment tracking tool for researchers who don't want another SaaS dependency."},
-];
-
-const SKILLS_DATA = [
-  {name:"Deep Learning",level:92,desc:"PyTorch, JAX, transformers, CNNs, graph networks"},
-  {name:"Computational Neuroscience",level:85,desc:"Spiking networks, place cells, synaptic plasticity models"},
-  {name:"Computational Biology",level:75,desc:"Protein structure, sequence models, evolutionary dynamics"},
-  {name:"Statistical Analysis",level:88,desc:"Bayesian inference, causal models, survival analysis"},
-  {name:"Python / Scientific Stack",level:95,desc:"NumPy, SciPy, Pandas, Matplotlib, Seaborn"},
-  {name:"Scientific Writing",level:82,desc:"Papers, grant proposals, technical blog posts"},
-];
-
-// ── RENDER ──────────────────────────────────
-function init() {
-  renderTicker();
-  renderHero();
-  renderPrimaryGrid();
-  renderProjects();
-  renderSkills();
-  renderAllPosts();
-  initReveal();
-  initHeroCanvas();
-  initPotdCanvas();
-}
-
-function renderTicker() {
-  const items = POSTS.slice(0,8).map(p => `<span><em>·</em> ${p.title}</span>`).join('');
-  document.getElementById('ticker-content').innerHTML = items + items; // duplicate for seamless loop
-}
-
-function renderHero() {
-  const featured = POSTS.find(p => p.featured) || POSTS[0];
-  document.getElementById('hero-cat').textContent = catLabel(featured.category);
-  document.getElementById('hero-cat').className = 'hero-category';
-  document.getElementById('hero-title').textContent = featured.title;
-  document.getElementById('hero-deck').textContent = featured.deck;
-  document.getElementById('hero-meta').textContent = `${featured.date} · ${featured.readTime}`;
-  document.getElementById('hero-section').onclick = () => openArticle(POSTS.indexOf(featured));
-}
-
-function renderPrimaryGrid() {
-  const grid = document.getElementById('primary-grid');
-  const posts = POSTS.filter(p => !p.featured).slice(0, 5);
-  grid.innerHTML = '';
-
-  posts.forEach((p, i) => {
-    const cell = document.createElement('div');
-    cell.className = 'grid-cell' + (i === 0 ? ' span-col-2' : '');
-    cell.innerHTML = `
-      <article class="article-card" style="cursor:pointer" onclick="openArticle(${POSTS.indexOf(p)})">
-        <div class="art-img"><div style="height:${i===0?'220px':'160px'};background:${gradientFor(p.category)};border-radius:0"></div></div>
-        <span class="art-category ${catClass(p.category)}">${catLabel(p.category)}</span>
-        <h3 class="art-title${i===0?' large':''}">${p.title}</h3>
-        <p class="art-deck">${p.deck}</p>
-        <div class="art-meta">${p.date} · ${p.readTime}</div>
-      </article>`;
-    grid.appendChild(cell);
-  });
-}
-
-function renderProjects() {
-  const grid = document.getElementById('projects-grid');
-  grid.innerHTML = PROJECTS.map(p => `
-    <div class="project-card">
-      <div class="proj-num">${p.num}</div>
-      <span class="proj-tag">${p.tag}</span>
-      <div class="proj-title">${p.title}</div>
-      <p class="proj-desc">${p.desc}</p>
-      <a class="proj-link" href="#">View Project →</a>
-    </div>`).join('');
-}
-
-function renderSkills() {
-  document.getElementById('skills-grid').innerHTML = SKILLS_DATA.map(s => `
-    <div class="skill-card">
-      <div class="skill-name">${s.name}</div>
-      <div class="skill-level"><div class="skill-level-fill" style="width:${s.level}%"></div></div>
-      <div class="skill-desc">${s.desc}</div>
-    </div>`).join('');
-}
-
-function renderAllPosts(filter='all') {
-  const list = document.getElementById('posts-list');
-  const label = document.getElementById('all-posts-label');
-  const filtered = filter === 'all' ? POSTS : POSTS.filter(p => p.category === filter);
-  label.textContent = `${filter === 'all' ? 'All Writing' : catLabel(filter)} — ${filtered.length} articles`;
-  list.innerHTML = filtered.map((p,i) => `
-    <div class="article-horiz" onclick="openArticle(${POSTS.indexOf(p)})">
-      <div class="hk-img"><div style="width:100%;height:100%;background:${gradientFor(p.category)}"></div></div>
-      <div class="hk-body">
-        <div class="hk-category ${catClass(p.category)}">${catLabel(p.category)}</div>
-        <div class="hk-title">${p.title}</div>
-        <div class="hk-meta">${p.date} · ${p.readTime}</div>
-      </div>
-    </div>`).join('');
-}
-
-// ── ARTICLE READER ──────────────────────────
-function openArticle(idx) {
-  const p = POSTS[idx];
-  if (!p) return;
-  document.getElementById('article-modal-content').innerHTML = `
-    <div style="margin-bottom:8px">
-      <span class="art-category ${catClass(p.category)}" style="display:inline-block;margin-bottom:12px">${catLabel(p.category)}</span>
-    </div>
-    <h2 style="font-family:var(--serif);font-size:clamp(22px,3vw,36px);font-weight:700;line-height:1.2;margin-bottom:16px">${p.title}</h2>
-    <p style="font-size:15px;color:var(--gray-mid);margin-bottom:24px;padding-bottom:20px;border-bottom:3px solid var(--black)">${p.deck}</p>
-    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-light);margin-bottom:28px">
-      By Abhishek Jha &nbsp;·&nbsp; ${p.date} &nbsp;·&nbsp; ${p.readTime}
-    </div>
-    <div style="font-size:16px;line-height:1.75;color:var(--gray-dark)">${p.content}</div>
-    <div style="margin-top:32px;padding-top:20px;border-top:var(--border-thin);font-size:13px;color:var(--gray-light)">
-      Share: 
-      <a href="https://x.com/intent/tweet?text=${encodeURIComponent(p.title)}" target="_blank" style="color:var(--black);font-weight:700;margin-left:8px">Twitter/X</a> &nbsp;·&nbsp;
-      <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(location.href)}" target="_blank" style="color:var(--black);font-weight:700">LinkedIn</a>
-    </div>`;
-  document.getElementById('article-modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeArticleOnBg(e) {
-  if (e.target === document.getElementById('article-modal')) closeModal('article-modal');
-}
-
-// ── FILTERING ───────────────────────────────
-function filterSection(cat, btn) {
-  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const showProjects = cat === 'all' || cat === 'projects';
-  const showSkills   = cat === 'all' || cat === 'skills';
-  document.getElementById('projects-band').style.display = showProjects ? '' : 'none';
-  document.getElementById('skills-section').style.display = showSkills ? '' : 'none';
-  renderAllPosts(cat);
-  if (cat === 'all' || cat === 'ml' || cat === 'physiology' || cat === 'intelligence' || cat === 'life' || cat === 'travel') {
-    const featured = cat === 'all' ? POSTS.find(p=>p.featured)||POSTS[0] : POSTS.find(p=>p.category===cat) || POSTS[0];
-    document.getElementById('hero-cat').textContent = catLabel(featured.category);
-    document.getElementById('hero-title').textContent = featured.title;
-    document.getElementById('hero-deck').textContent = featured.deck;
-    document.getElementById('hero-meta').textContent = `${featured.date} · ${featured.readTime}`;
-  }
-}
-
-// ── SEARCH ──────────────────────────────────
-function openSearch() { document.getElementById('search-overlay').classList.add('open'); document.getElementById('search-input').focus(); }
-function closeSearch() { document.getElementById('search-overlay').classList.remove('open'); }
-function doSearch(q) {
-  const res = document.getElementById('search-results');
-  if (!q.trim()) { res.innerHTML = ''; return; }
-  const hits = POSTS.filter(p => (p.title+p.deck+p.content).toLowerCase().includes(q.toLowerCase()));
-  res.innerHTML = hits.length ? hits.map(p => `
-    <div class="search-result-item" onclick="closeSearch();openArticle(${POSTS.indexOf(p)})">
-      <div class="sr-cat">${catLabel(p.category)}</div>
-      <div class="sr-title">${p.title}</div>
-      <div class="sr-desc">${p.deck}</div>
-    </div>`).join('') : `<p style="color:var(--gray-light);margin-top:20px;font-size:15px">No results for "${q}"</p>`;
-}
-document.addEventListener('keydown', e => { if (e.key==='Escape') { closeSearch(); document.querySelectorAll('.modal-overlay').forEach(m=>m.classList.remove('open')); document.body.style.overflow=''; } });
-
-// ── MODALS ──────────────────────────────────
-function openModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
-function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
-function closeOnBg(e, id) { if (e.target===document.getElementById(id)) closeModal(id); }
-function switchTab(tabId, btn) {
-  document.querySelectorAll('.modal-section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById(tabId).classList.add('active');
-  btn.classList.add('active');
-}
-
-// ── NEWSLETTER ──────────────────────────────
-function handleSub(e) {
-  e.preventDefault();
-  const btn = document.getElementById('sub-btn');
-  btn.textContent = '✓ Subscribed!';
-  btn.style.background = '#166534';
-  btn.disabled = true;
-  e.target.querySelector('input').value = '';
-  setTimeout(() => { btn.textContent = 'Subscribe'; btn.style.background = ''; btn.disabled = false; }, 3500);
-}
-
-// ── REVEAL ANIMATIONS ───────────────────────
-function initReveal() {
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('up'); obs.unobserve(e.target); } });
-  }, { threshold: 0.06 });
-  document.querySelectorAll('.reveal,.skill-card,.project-card,.article-horiz').forEach(el => { el.classList.add('reveal'); obs.observe(el); });
-}
-
-// ── CANVAS ANIMATIONS ───────────────────────
-function initHeroCanvas() {
-  const canvas = document.getElementById('hero-canvas');
-  const ctx = canvas.getContext('2d');
-  let particles = [];
-  function resize() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
-  resize();
-  window.addEventListener('resize', resize);
-  for (let i=0;i<80;i++) particles.push({ x:Math.random()*canvas.width, y:Math.random()*canvas.height, vx:(Math.random()-.5)*.3, vy:(Math.random()-.5)*.3, r:Math.random()*2+.5, a:Math.random() });
-  function draw() {
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    particles.forEach(p => {
-      p.x+=p.vx; p.y+=p.vy;
-      if(p.x<0)p.x=canvas.width; if(p.x>canvas.width)p.x=0;
-      if(p.y<0)p.y=canvas.height; if(p.y>canvas.height)p.y=0;
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(255,204,0,${p.a*.6})`; ctx.fill();
-    });
-    // draw connections
-    for(let i=0;i<particles.length;i++) for(let j=i+1;j<particles.length;j++) {
-      const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y;
-      const dist=Math.sqrt(dx*dx+dy*dy);
-      if(dist<90){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(255,204,0,${(1-dist/90)*.2})`;ctx.lineWidth=.5;ctx.stroke();}
+  const POSTS_DATA = [
+    {
+      "id": "transformer-attention-brain",
+      "title": "How Transformer Attention Mirrors Neural Circuits",
+      "deck": "Striking parallels between self-attention and the hippocampus place-cell geometry.",
+      "category": "ml",
+      "date": "May 24, 2025",
+      "content": "Full article content about transformers and neural circuits. Striking parallels between self-attention mechanisms and the place-cell geometry of memory consolidation suggest deep architectural convergence..."
+    },
+    {
+      "id": "sleep-synaptic-homeostasis",
+      "title": "Sleep as Synaptic Pruning",
+      "deck": "New evidence from calcium imaging during NREM sleep challenges old assumptions.",
+      "category": "physiology",
+      "date": "May 10, 2025",
+      "content": "Full article content about sleep. The synaptic homeostasis hypothesis (SHY) proposes that wakefulness leads to net synaptic potentiation, and sleep reverses this through downscaling..."
+    },
+    {
+      "id": "octopus-distributed-cognition",
+      "title": "The Octopus as a Model for Cognition",
+      "deck": "Two-thirds of an octopus's neurons live in its arms. What does that mean for 'mind'?",
+      "category": "intelligence",
+      "date": "Apr 28, 2025",
+      "content": "Full article content about octopuses. An octopus arm, severed from its body, will still reach for food. The arm 'decides' to grasp. This single fact should unsettle every assumption we hold about where cognition lives..."
     }
-    requestAnimationFrame(draw);
-  }
-  draw();
-}
+  ];
 
-function initPotdCanvas() {
-  const canvas = document.getElementById('potd-canvas');
-  const ctx = canvas.getContext('2d');
-  function resize() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
-  resize();
-  window.addEventListener('resize', resize);
-  let t=0;
-  function draw() {
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    for(let i=0;i<5;i++) {
-      const x=canvas.width*(.1+i*.2+Math.sin(t*.3+i)*.08);
-      const y=canvas.height*(.3+Math.cos(t*.2+i*1.3)*.2);
-      const g=ctx.createRadialGradient(x,y,0,x,y,canvas.height*.35);
-      g.addColorStop(0,`rgba(255,204,0,.12)`); g.addColorStop(1,'transparent');
-      ctx.fillStyle=g; ctx.beginPath(); ctx.ellipse(x,y,canvas.height*.35,canvas.height*.25,t*.05,0,Math.PI*2); ctx.fill();
+  function openPokedex(id) {
+    const post = POSTS_DATA.find(p => p.id === id);
+    if (!post) return;
+    
+    document.getElementById('pokedex-content').innerHTML = `
+      <h2>ENTRY. #${post.id.toUpperCase()}</h2>
+      <h3>TITLE: ${post.title}</h3>
+      <p style="font-weight:700; margin:10px 0; color:#333;">// ${post.date}</p>
+      <div style="margin-top:20px; line-height:1.6;">${post.content}</div>
+    `;
+    document.getElementById('pokedex-modal').style.display = 'flex';
+  }
+
+  function closePokedex() {
+    document.getElementById('pokedex-modal').style.display = 'none';
+  }
+
+  function renderPosts(posts) {
+    const container = document.getElementById('posts-container');
+    if (!container) return;
+    
+    container.innerHTML = posts.map(post => `
+      <article class="article-card" onclick="openPokedex('${post.id}')">
+        <div class="art-img-wrap">
+          <img src="https://picsum.photos/seed/${post.id}/300/200" alt="${post.title}">
+        </div>
+        <div class="art-body">
+          <div class="art-meta" style="margin-bottom: 8px;">
+            <span class="tag-badge" style="background-color: var(--type-${post.category}); border-width: 1px; padding: 2px 8px; font-size: 10px; color: white;">${post.category.toUpperCase()}</span>
+          </div>
+          <h2 class="art-title">${post.title}</h2>
+          <p class="art-deck">${post.deck}</p>
+          <div class="art-meta">
+            <span>📅 ${post.date}</span>
+            <span>➔ SCAN ENTRY</span>
+          </div>
+        </div>
+      </article>
+    `).join('');
+  }
+
+  async function loadPosts() {
+    try {
+      const resp = await fetch('posts.json');
+      if (!resp.ok) throw new Error("Fetch failed");
+      const posts = await resp.json();
+      renderPosts(posts);
+    } catch (e) {
+      renderPosts(POSTS_DATA);
     }
-    t+=.01; requestAnimationFrame(draw);
   }
-  draw();
-}
 
-// ── HELPERS ──────────────────────────────────
-function catLabel(c) {
-  return {ml:'Machine Learning',physiology:'Physiology',intelligence:'Intelligence',life:'Life',travel:'Travel',skills:'Skills',projects:'Projects'}[c] || c;
-}
-function catClass(c) { return 'cat-'+c; }
-function gradientFor(c) {
-  return {
-    ml:'linear-gradient(135deg,#0a1628,#1a3a6e)',
-    physiology:'linear-gradient(135deg,#0a1f0a,#1a5c2e)',
-    intelligence:'linear-gradient(135deg,#1a0a2e,#3a1a5c)',
-    life:'linear-gradient(135deg,#1a0a0a,#5c2a1a)',
-    travel:'linear-gradient(135deg,#0a1a1a,#1a4a4a)',
-    skills:'linear-gradient(135deg,#1a1a0a,#4a4a1a)',
-    projects:'linear-gradient(135deg,#1a0a1a,#4a1a3a)',
-  }[c] || 'linear-gradient(135deg,#1a1a1a,#333)';
-}
-
-// ── START — fetch posts.json, fall back to inline data ──
-fetch('./posts.json')
-  .then(r => { if (!r.ok) throw new Error('no posts.json'); return r.json(); })
-  .then(data => { POSTS = data; init(); })
-  .catch(() => { POSTS = POSTS_FALLBACK; init(); });
+  document.addEventListener('DOMContentLoaded', loadPosts);
 </script>
+
 </body>
 </html>
