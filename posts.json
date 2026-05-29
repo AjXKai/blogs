@@ -1,0 +1,82 @@
+[
+  {
+    "id": "transformer-attention-brain",
+    "title": "How Transformer Attention Mirrors Neural Circuits in the Hippocampus",
+    "deck": "Striking parallels between self-attention mechanisms and the place-cell geometry of memory consolidation suggest deep architectural convergence.",
+    "category": "ml",
+    "date": "May 24, 2025",
+    "readTime": "9 min read",
+    "featured": true,
+    "content": "<p>The hippocampus has long been understood as the brain's indexing system — a fast-binding structure that ties together distributed cortical representations into coherent episodic memories. When I first read Vaswani et al.'s original Transformer paper, I couldn't shake the feeling that I'd seen this architecture somewhere before.</p><p>The key insight: both systems implement a form of content-addressable memory. In transformers, the attention score between a query Q and key K determines retrieval weight. In hippocampal circuitry, pattern completion in CA3 recurrent connections performs structurally identical operations — a query pattern activates the most similar stored pattern through a form of Hebbian overlap scoring.</p><p>This essay explores what this convergence might mean — for AI architecture design, for our models of memory consolidation, and for the broader question of whether intelligence is substrate-independent.</p>"
+  },
+  {
+    "id": "sleep-synaptic-homeostasis",
+    "title": "Sleep as Synaptic Pruning: The Homeostasis Hypothesis Revisited",
+    "deck": "New evidence from calcium imaging during NREM sleep challenges our assumptions about what the sleeping brain is actually optimizing.",
+    "category": "physiology",
+    "date": "May 10, 2025",
+    "readTime": "7 min read",
+    "featured": false,
+    "content": "<p>The synaptic homeostasis hypothesis (SHY) proposes that wakefulness leads to net synaptic potentiation, and sleep reverses this through downscaling. It's an elegant theory — and increasingly, a contested one.</p><p>Recent two-photon calcium imaging in mouse primary visual cortex shows that slow-wave activity during NREM sleep does not uniformly downscale synapses. Instead, it selectively strengthens synapses that were recently involved in learning while weakening others. This isn't homeostasis — it's sculpting.</p>"
+  },
+  {
+    "id": "octopus-distributed-cognition",
+    "title": "The Octopus as a Model for Distributed Cognition",
+    "deck": "Two-thirds of an octopus's neurons live in its arms. What does that mean for how we define a mind?",
+    "category": "intelligence",
+    "date": "Apr 28, 2025",
+    "readTime": "6 min read",
+    "featured": false,
+    "content": "<p>An octopus arm, severed from its body, will still reach for food. The arm 'decides' to grasp. This single fact should unsettle every assumption we hold about where cognition lives.</p><p>With ~500 million neurons distributed across eight semi-autonomous arms, the octopus challenges the centralized-brain model that vertebrate chauvinism has normalized. Each arm contains a ganglion capable of local sensorimotor integration — reflexive behavior, texture discrimination, even simple learning.</p>"
+  },
+  {
+    "id": "rl-for-protein-design",
+    "title": "Using Reinforcement Learning to Navigate Protein Fitness Landscapes",
+    "deck": "Treating protein engineering as a Markov decision process opens surprising doors — and reveals why wet-lab feedback loops matter more than bigger models.",
+    "category": "ml",
+    "date": "Apr 12, 2025",
+    "readTime": "11 min read",
+    "featured": false,
+    "content": "<p>Protein fitness landscapes are deceptive. High-fitness sequences tend to cluster in sparse, non-contiguous regions of sequence space, separated by fitness valleys. Evolutionary search — and most ML approaches — struggle here.</p><p>The RL framing offers something different: an agent that learns to navigate the landscape via active, adaptive sampling. State = current sequence. Action = point mutation. Reward = experimental fitness readout.</p>"
+  },
+  {
+    "id": "ladakh-mind-altitude",
+    "title": "Thinking at 5,000 Metres: Cognitive Effects of High Altitude",
+    "deck": "A field researcher's notebook from Ladakh — what hypoxia does to memory, attention, and the sense of self.",
+    "category": "travel",
+    "date": "Mar 31, 2025",
+    "readTime": "5 min read",
+    "featured": false,
+    "content": "<p>The Pangong Tso sits at 4,350m. By the time I reached it, I'd been at altitude for six days — enough time for acclimatization to begin but not complete. My notebook entries from those days are... strange.</p><p>Hypoxia impairs prefrontal function first. Working memory degrades measurably above 3,500m, and cognitive flexibility — the ability to switch between tasks — suffers disproportionately. What remains intact longer: procedural memory, emotional salience, spatial navigation.</p>"
+  },
+  {
+    "id": "deliberate-practice-research",
+    "title": "Deliberate Practice for Research Scientists",
+    "deck": "The 10,000-hour rule is a myth, but the underlying science of expertise acquisition has genuine implications for how you structure your learning.",
+    "category": "skills",
+    "date": "Mar 15, 2025",
+    "readTime": "8 min read",
+    "featured": false,
+    "content": "<p>Ericsson never said 10,000 hours. What he showed is that expert performance requires deliberate practice — structured activity at the edge of your current ability, with immediate feedback and focused repetition of weak points.</p><p>For research scientists, the implications are counterintuitive. Reading papers is not deliberate practice. Attending seminars is not deliberate practice. Writing first drafts, receiving brutal peer review, and immediately revising — that's closer.</p>"
+  },
+  {
+    "id": "gut-brain-axis-mood",
+    "title": "The Gut-Brain Axis: Psychobiotics and the Future of Mood Regulation",
+    "deck": "The enteric nervous system contains 100 million neurons. New research suggests we've been treating depression from the wrong end.",
+    "category": "physiology",
+    "date": "Feb 28, 2025",
+    "readTime": "8 min read",
+    "featured": false,
+    "content": "<p>The vagus nerve is a bidirectional highway between gut and brain. About 80% of its fibres carry signals upward — from gut to brain — making the enteric nervous system less a subordinate and more a collaborator in mood regulation.</p><p>The psychobiotic hypothesis proposes that targeted manipulation of gut microbiota can produce measurable anxiolytic and antidepressant effects. The evidence is promising but heterogeneous.</p>"
+  },
+  {
+    "id": "spaced-repetition-system",
+    "title": "Building a Personal Knowledge System with Spaced Repetition",
+    "deck": "How I use Anki, Obsidian, and a custom tagging taxonomy to retain 90% of what I read across three research domains.",
+    "category": "skills",
+    "date": "Feb 10, 2025",
+    "readTime": "6 min read",
+    "featured": false,
+    "content": "<p>The forgetting curve is brutal and democratic — it doesn't care how important the paper is. Without active retrieval practice, most of what you read disappears within a week. Spaced repetition is the only intervention with a solid evidence base for long-term retention.</p><p>My system has three layers: (1) Anki for factual and conceptual retrieval, (2) Obsidian for linked, elaborative notes, and (3) a weekly review ritual that forces synthesis across domains.</p>"
+  }
+]
