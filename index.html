@@ -941,7 +941,6 @@ function renderProjects() {
 function renderSkills() {
   document.getElementById('skills-grid').innerHTML = SKILLS_DATA.map(s => `
     <div class="skill-card">
-      <div class="skill-icon">${s.icon}</div>
       <div class="skill-name">${s.name}</div>
       <div class="skill-level"><div class="skill-level-fill" style="width:${s.level}%"></div></div>
       <div class="skill-desc">${s.desc}</div>
